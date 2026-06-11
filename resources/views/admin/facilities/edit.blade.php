@@ -7,10 +7,12 @@
 <div class="admin-page-head">
     <div>
         <a href="{{ route('admin.facilities.index') }}" class="admin-back-link">
-            ← Back to list
+            ← {{ trans('global.back_to_list') }}
         </a>
 
-        <h2 class="admin-page-title">Edit Facility</h2>
+        <h2 class="admin-page-title">
+            Edit Facility
+        </h2>
 
         <p class="admin-page-subtitle">
             Update facility card details
@@ -26,6 +28,7 @@
 
     <div class="admin-form-grid">
 
+        {{-- FACILITY INFORMATION --}}
         <div class="form-card">
             <div class="form-card-header">
                 <div class="form-card-icon">
@@ -34,14 +37,16 @@
 
                 <div>
                     <p class="form-card-title">Facility Information</p>
-                    <p class="form-card-subtitle">Basic facility card content</p>
+                    <p class="form-card-subtitle">Basic facility card details</p>
                 </div>
             </div>
 
             <div class="form-card-body">
 
                 <div class="field-group">
-                    <label class="field-label" for="number">Number</label>
+                    <label class="field-label" for="number">
+                        Number
+                    </label>
 
                     <div class="input-icon-wrap">
                         <i class="fas fa-sort-numeric-up icon"></i>
@@ -59,6 +64,8 @@
                             <i class="fas fa-exclamation-circle"></i>
                             {{ $errors->first('number') }}
                         </p>
+                    @else
+                        <p class="field-hint">Example: 01, 02, 03</p>
                     @endif
                 </div>
 
@@ -88,7 +95,9 @@
                 </div>
 
                 <div class="field-group">
-                    <label class="field-label" for="description">Description</label>
+                    <label class="field-label" for="description">
+                        Description
+                    </label>
 
                     <textarea name="description"
                               id="description"
@@ -107,6 +116,7 @@
             </div>
         </div>
 
+        {{-- IMAGE & SETTINGS --}}
         <div class="form-card">
             <div class="form-card-header">
                 <div class="form-card-icon">
@@ -115,14 +125,16 @@
 
                 <div>
                     <p class="form-card-title">Image & Settings</p>
-                    <p class="form-card-subtitle">Upload image and control frontend visibility</p>
+                    <p class="form-card-subtitle">Replace image and control display order</p>
                 </div>
             </div>
 
             <div class="form-card-body">
 
                 <div class="field-group">
-                    <label class="field-label" for="facility_image">Facility Image</label>
+                    <label class="field-label" for="facility_image">
+                        Facility Image
+                    </label>
 
                     <input type="file"
                            name="facility_image"
@@ -134,7 +146,7 @@
                         <div style="margin-top: 14px;">
                             <img src="{{ $facility->image }}"
                                  alt="{{ $facility->image_alt ?? $facility->title }}"
-                                 style="width:180px;height:125px;object-fit:cover;border-radius:14px;border:1px solid #e5e7eb;">
+                                 style="width: 180px; height: 125px; object-fit: cover; border-radius: 14px; border: 1px solid #e5e7eb;">
                         </div>
                     @endif
 
@@ -146,13 +158,15 @@
                     @else
                         <p class="field-hint">
                             <i class="fas fa-info-circle"></i>
-                            Upload new image only if you want to replace old image
+                            Upload only if you want to replace current image
                         </p>
                     @endif
                 </div>
 
                 <div class="field-group">
-                    <label class="field-label" for="image_alt">Image Alt Text</label>
+                    <label class="field-label" for="image_alt">
+                        Image Alt Text
+                    </label>
 
                     <div class="input-icon-wrap">
                         <i class="fas fa-closed-captioning icon"></i>
@@ -170,11 +184,15 @@
                             <i class="fas fa-exclamation-circle"></i>
                             {{ $errors->first('image_alt') }}
                         </p>
+                    @else
+                        <p class="field-hint">Useful for SEO and accessibility</p>
                     @endif
                 </div>
 
                 <div class="field-group">
-                    <label class="field-label" for="sort_order">Sort Order</label>
+                    <label class="field-label" for="sort_order">
+                        Sort Order
+                    </label>
 
                     <div class="input-icon-wrap">
                         <i class="fas fa-sort icon"></i>
@@ -183,6 +201,7 @@
                                name="sort_order"
                                id="sort_order"
                                value="{{ old('sort_order', $facility->sort_order) }}"
+                               placeholder="0"
                                class="field-input {{ $errors->has('sort_order') ? 'error' : '' }}">
                     </div>
 
@@ -195,7 +214,11 @@
                 </div>
 
                 <div class="field-group">
-                    <label class="role-checkbox-item {{ old('status', $facility->status) ? 'checked' : '' }}" style="max-width:180px;">
+                    <label class="field-label">
+                        Status
+                    </label>
+
+                    <label class="role-checkbox-item {{ old('status', $facility->status) ? 'checked' : '' }}" style="max-width: 190px;">
                         <input type="checkbox"
                                name="status"
                                value="1"
@@ -206,6 +229,13 @@
 
                         <span class="checkbox-text">Active</span>
                     </label>
+                </div>
+
+                <div class="form-info-box">
+                    <p>
+                        <i class="fas fa-info-circle"></i>
+                        Active facilities will be visible on the frontend facility section.
+                    </p>
                 </div>
 
             </div>
@@ -220,7 +250,7 @@
         </button>
 
         <a href="{{ route('admin.facilities.index') }}" class="btn-ghost">
-            Cancel
+            {{ trans('global.cancel') }}
         </a>
     </div>
 
