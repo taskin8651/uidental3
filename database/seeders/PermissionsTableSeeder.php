@@ -118,6 +118,26 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => 107,
                 'title' => 'website_setting_edit',
             ],
+            [
+                'id'    => 108,
+                'title' => 'patient_review_create',
+            ],
+            [
+                'id'    => 109,
+                'title' => 'patient_review_edit',
+            ],
+            [
+                'id'    => 110,
+                'title' => 'patient_review_show',
+            ],
+            [
+                'id'    => 111,
+                'title' => 'patient_review_delete',
+            ],
+            [
+                'id'    => 112,
+                'title' => 'patient_review_access',
+            ],
         ];
 
         Permission::insert($permissions);

@@ -324,7 +324,7 @@
             </div>
 
             <div>
-              <strong>{{ $patientReviews }}</strong>
+              <strong>{{ $patientReviewCount }}</strong>
               <span>Patient Reviews</span>
             </div>
           </div>

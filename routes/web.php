@@ -54,6 +54,10 @@ Route::resource('galleries', 'GalleriesController');
 Route::delete('before-after-results/destroy', 'BeforeAfterResultsController@massDestroy')->name('before-after-results.massDestroy');
 Route::resource('before-after-results', 'BeforeAfterResultsController');
 
+// Patient Reviews
+Route::delete('patient-reviews/destroy', 'PatientReviewsController@massDestroy')->name('patient-reviews.massDestroy');
+Route::resource('patient-reviews', 'PatientReviewsController', ['except' => ['show']]);
+
 // Enquiries
 Route::delete('appointment-enquiries/destroy', 'AppointmentEnquiriesController@massDestroy')->name('appointment-enquiries.massDestroy');
 Route::resource('appointment-enquiries', 'AppointmentEnquiriesController', ['only' => ['index', 'show', 'destroy']]);
@@ -78,8 +82,9 @@ Route::get('services/{slug}', [App\Http\Controllers\Frontend\ServiceController::
 
 Route::get('doctor-profile', [App\Http\Controllers\Frontend\DoctorController::class, 'index'])->name('doctor-profile');
 Route::get('gallery', [App\Http\Controllers\Frontend\GalleryController::class, 'index'])->name('gallery');
+Route::get('testimonials', [App\Http\Controllers\Frontend\TestimonialController::class, 'index'])->name('testimonials');
 Route::get('contact', [App\Http\Controllers\Frontend\ContactController::class, 'index'])->name('contact');
-Route::get('contact.html', [App\Http\Controllers\Frontend\ContactController::class, 'index']);
 Route::post('contact-enquiry', [App\Http\Controllers\Frontend\ContactController::class, 'store'])->name('contact.enquiry.store');
 Route::get('book-appointment', [App\Http\Controllers\Frontend\AppointmentController::class, 'create'])->name('book-appointment');
 Route::post('book-appointment', [App\Http\Controllers\Frontend\AppointmentController::class, 'store'])->name('appointment.store');
+ 

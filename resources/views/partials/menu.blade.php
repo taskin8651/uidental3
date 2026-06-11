@@ -115,6 +115,7 @@
         || request()->is('admin/doctors*')
         || request()->is('admin/galleries*')
         || request()->is('admin/before-after-results*')
+        || request()->is('admin/patient-reviews*')
         || request()->is('admin/appointment-enquiries*')
         || request()->is('admin/contact-enquiries*')
         || request()->is('admin/website-settings*')
@@ -197,6 +198,14 @@
        class="sub-link {{ request()->is('admin/before-after-results*') ? 'active' : '' }}">
         <i class="fas fa-exchange-alt"></i>
         Before / After
+    </a>
+@endcan
+
+@can('patient_review_access')
+    <a href="{{ route('admin.patient-reviews.index') }}"
+       class="sub-link {{ request()->is('admin/patient-reviews*') ? 'active' : '' }}">
+        <i class="fas fa-star"></i>
+        Patient Reviews
     </a>
 @endcan
 

@@ -45,7 +45,7 @@ class AppServiceProvider extends ServiceProvider
                 'workingHours'   => $settingValue('working_hours', 'Mon-Sat 9 AM - 7 PM'),
                 'sundayHours'    => $settingValue('sunday_hours', 'Sun: 9 AM - 2 PM'),
                 'googleRating'   => $settingValue('google_rating', '4.5'),
-                'patientReviews' => $settingValue('patient_reviews', '62+'),
+                'patientReviewCount' => $settingValue('patient_reviews', '62+'),
                 'footerText'     => $settingValue('footer_text', '2026 Sinha Dental Clinic. All Rights Reserved.'),
             ]);
         });

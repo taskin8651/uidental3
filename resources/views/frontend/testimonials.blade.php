@@ -173,159 +173,45 @@
       </div>
 
       <div class="reviews-grid">
+        @forelse($patientReviews as $review)
+          <article class="review-card" data-aos="fade-up" data-aos-delay="{{ ($loop->index % 3) * 100 }}">
+            <div class="review-top">
+              <div class="review-avatar">
+                <span>{{ $review->avatar_letter ?: strtoupper(substr($review->title, 0, 1)) }}</span>
+              </div>
 
-      
-
-        <article class="review-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="review-top">
-            <div class="review-avatar">
-              <span>A</span>
+              <div>
+                <h3>{{ $review->title }}</h3>
+                <small>{{ $review->service_name }}</small>
+              </div>
             </div>
 
-            <div>
-              <h3>Patient Review</h3>
-              <small>Teeth Cleaning</small>
-            </div>
-          </div>
-
-          <div class="review-stars">
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-          </div>
-
-          <p>
-            Professional cleaning support with patient-friendly explanation and hygiene-focused care.
-          </p>
-
-          <span class="review-badge">
-            <i class="bi bi-shield-check"></i>
-            Hygiene Focus
-          </span>
-        </article>
-
-        <article class="review-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="review-top">
-            <div class="review-avatar">
-              <span>S</span>
+            <div class="review-stars">
+              @for($star = 1; $star <= 5; $star++)
+                @if($review->rating >= $star)
+                  <i class="bi bi-star-fill"></i>
+                @elseif($review->rating >= $star - 0.5)
+                  <i class="bi bi-star-half"></i>
+                @else
+                  <i class="bi bi-star"></i>
+                @endif
+              @endfor
             </div>
 
-            <div>
-              <h3>Patient Review</h3>
-              <small>Root Canal Treatment</small>
-            </div>
-          </div>
+            <p>
+              {{ $review->review_text }}
+            </p>
 
-          <div class="review-stars">
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-half"></i>
-          </div>
-
-          <p>
-            Comfort-focused treatment guidance for tooth pain and root canal care support.
-          </p>
-
-          <span class="review-badge">
-            <i class="bi bi-heart-pulse-fill"></i>
-            Comfort Care
-          </span>
-        </article>
-
-        <article class="review-card" data-aos="fade-up" data-aos-delay="0">
-          <div class="review-top">
-            <div class="review-avatar">
-              <span>P</span>
-            </div>
-
-            <div>
-              <h3>Patient Review</h3>
-              <small>Dental Crown</small>
-            </div>
-          </div>
-
-          <div class="review-stars">
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-          </div>
-
-          <p>
-            Helpful explanation of dental crown treatment and easy appointment support.
-          </p>
-
-          <span class="review-badge">
-            <i class="bi bi-calendar2-check-fill"></i>
-            Appointment Support
-          </span>
-        </article>
-
-        <article class="review-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="review-top">
-            <div class="review-avatar">
-              <span>N</span>
-            </div>
-
-            <div>
-              <h3>Patient Review</h3>
-              <small>Dental Implant</small>
-            </div>
-          </div>
-
-          <div class="review-stars">
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-          </div>
-
-          <p>
-            Good consultation support for missing tooth replacement and dental implant guidance.
-          </p>
-
-          <span class="review-badge">
-            <i class="bi bi-plus-circle-fill"></i>
-            Implant Guidance
-          </span>
-        </article>
-
-        <article class="review-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="review-top">
-            <div class="review-avatar">
-              <span>K</span>
-            </div>
-
-            <div>
-              <h3>Patient Review</h3>
-              <small>Smile Designing</small>
-            </div>
-          </div>
-
-          <div class="review-stars">
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-half"></i>
-          </div>
-
-          <p>
-            Friendly smile consultation and clear cosmetic dental care explanation.
-          </p>
-
-          <span class="review-badge">
-            <i class="bi bi-emoji-smile-fill"></i>
-            Smile Care
-          </span>
-        </article>
-
+            @if($review->badge_text)
+              <span class="review-badge">
+                <i class="{{ $review->badge_icon ?: 'bi bi-shield-check' }}"></i>
+                {{ $review->badge_text }}
+              </span>
+            @endif
+          </article>
+        @empty
+          <p>No patient reviews added yet.</p>
+        @endforelse
       </div>
     </div>
   </section>
