@@ -15,6 +15,7 @@ class ContactController extends Controller
             ->orderBy('sort_order', 'asc')
             ->orderBy('title', 'asc')
             ->get();
+            
 
         return view('frontend.contact', compact('services'));
     }

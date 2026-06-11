@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  @php
+    $settingValue = function ($key, $default = '') use ($websiteSetting) {
+      return $websiteSetting ? $websiteSetting->value($key) : $default;
+    };
+
+  @endphp
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>@yield('title', 'Sinha Dental Clinic Patna | Dental Clinic in Kidwaipuri, Patna')</title>
+  <title>@yield('title', $settingValue('site_title', 'Sinha Dental Clinic Patna | Dental Clinic in Kidwaipuri, Patna'))</title>
   <meta name="description"
-    content="@yield('meta_description', 'Sinha Dental Clinic in Patna offers professional dental consultation, teeth cleaning, root canal, crowns, implants, braces, smile designing and emergency dental care.')" />
+    content="@yield('meta_description', $settingValue('meta_description', 'Sinha Dental Clinic in Patna offers professional dental consultation, teeth cleaning, root canal, crowns, implants, braces, smile designing and emergency dental care.'))" />
   <meta name="keywords"
-    content="Dental clinic in Patna, dentist in Patna, Sinha Dental Clinic, root canal Patna, teeth cleaning Patna, dental implant Patna, dentist Kidwaipuri Patna" />
+    content="{{ $settingValue('meta_keywords', 'Dental clinic in Patna, dentist in Patna, Sinha Dental Clinic, root canal Patna, teeth cleaning Patna, dental implant Patna, dentist Kidwaipuri Patna') }}" />
+  @if(!empty($websiteSetting?->favicon))
+    <link rel="icon" href="{{ $websiteSetting->favicon }}">
+  @endif
   <!-- Google Fonts: Document Font Direction -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,13 +54,13 @@
         <!-- LEFT INFO -->
         <div class="top-left">
 
-          <a href="tel:08235147460" class="top-info-item top-phone">
+          <a href="tel:{{ $phoneLink }}" class="top-info-item top-phone">
             <span class="top-icon">
               <i class="bi bi-telephone-fill"></i>
             </span>
             <span class="top-info-text">
               <small>Call Clinic</small>
-              <strong>082351 47460</strong>
+              <strong>{{ $displayPhone }}</strong>
             </span>
           </a>
 
@@ -61,7 +70,7 @@
             </span>
             <span class="top-info-text">
               <small>Clinic Location</small>
-              <strong>Kidwaipuri, Patna</strong>
+              <strong>{{ $shortAddress }}</strong>
             </span>
           </a>
 
@@ -71,7 +80,7 @@
             </span>
             <span class="top-info-text">
               <small>Working Hours</small>
-              <strong>Mon-Sat 9 AM - 7 PM</strong>
+              <strong>{{ $workingHours }}</strong>
             </span>
           </div>
 
@@ -82,10 +91,10 @@
 
           <div class="top-rating-pill">
             <i class="bi bi-star-fill"></i>
-            <span>4.5 Google Rating</span>
+            <span>{{ $googleRating }} Google Rating</span>
           </div>
 
-          <a href="tel:08235147460" class="top-action-btn">
+          <a href="tel:{{ $phoneLink }}" class="top-action-btn">
             <i class="bi bi-telephone-outbound"></i>
             <span>Call Now</span>
           </a>
@@ -110,20 +119,24 @@
       <div class="container nav-container">
 
         <!-- BRAND -->
-        <a class="navbar-brand" href="index.html" aria-label="Sinha Dental Clinic Home">
-          <span class="brand-icon">
-            <i class="bi bi-heart-pulse-fill"></i>
-          </span>
+        <a class="navbar-brand" href="index.html" aria-label="{{ $clinicName }} Home">
+          @if(!empty($websiteSetting?->logo))
+            <img src="{{ $websiteSetting->logo }}" alt="{{ $clinicName }}" style="max-height:48px;width:auto;">
+          @else
+            <span class="brand-icon">
+              <i class="bi bi-heart-pulse-fill"></i>
+            </span>
+          @endif
 
           <span class="brand-text">
-            <strong>Sinha Dental</strong>
-            <small>Clinic Patna</small>
+            <strong>{{ $clinicName }}</strong>
+            <small>{{ $clinicSubtitle }}</small>
           </span>
         </a>
 
         <!-- MOBILE BUTTONS -->
         <div class="mobile-header-actions">
-          <a href="tel:08235147460" class="mobile-head-call" aria-label="Call Clinic">
+          <a href="tel:{{ $phoneLink }}" class="mobile-head-call" aria-label="Call Clinic">
             <i class="bi bi-telephone-fill"></i>
           </a>
 
@@ -140,7 +153,7 @@
 
           <div class="mobile-menu-head d-xl-none">
             <span>Navigation</span>
-            <strong>Sinha Dental Clinic</strong>
+            <strong>{{ $clinicName }} {{ $clinicSubtitle }}</strong>
             <small>Premium Dental Care in Patna</small>
           </div>
 
@@ -197,13 +210,13 @@
 
           <!-- DESKTOP CTA -->
           <div class="header-actions">
-            <a href="tel:08235147460" class="header-call d-none d-xxl-flex">
+            <a href="tel:{{ $phoneLink }}" class="header-call d-none d-xxl-flex">
               <span class="header-call-icon">
                 <i class="bi bi-telephone-fill"></i>
               </span>
               <span>
                 <small>Call Clinic</small>
-                <strong>082351 47460</strong>
+                <strong>{{ $displayPhone }}</strong>
               </span>
             </a>
 
@@ -215,7 +228,7 @@
 
           <!-- MOBILE CTA -->
           <div class="mobile-menu-actions d-xl-none">
-            <a href="tel:08235147460">
+            <a href="tel:{{ $phoneLink }}">
               <i class="bi bi-telephone-fill"></i>
               <span>Call</span>
             </a>
@@ -256,13 +269,13 @@
         <div class="footer-top-content">
           <span>
             <i class="bi bi-heart-pulse-fill"></i>
-            Sinha Dental Clinic
+            {{ $clinicName }} {{ $clinicSubtitle }}
           </span>
 
           <h3>Need dental care guidance?</h3>
 
           <p>
-            Book consultation, call clinic or get direction to our Kidwaipuri, Patna location.
+            Book consultation, call clinic or get direction to our {{ $shortAddress }} location.
           </p>
         </div>
 
@@ -272,7 +285,7 @@
             Appointment
           </a>
 
-          <a href="tel:08235147460" class="footer-outline-btn">
+          <a href="tel:{{ $phoneLink }}" class="footer-outline-btn">
             <i class="bi bi-telephone-fill"></i>
             Call Clinic
           </a>
@@ -285,13 +298,17 @@
         <!-- BRAND -->
         <div class="footer-brand-card" data-aos="fade-up" data-aos-delay="50">
           <a href="#home" class="footer-brand">
-            <span class="footer-brand-icon">
-              <i class="bi bi-heart-pulse-fill"></i>
-            </span>
+            @if(!empty($websiteSetting?->logo))
+              <img src="{{ $websiteSetting->logo }}" alt="{{ $clinicName }}" style="max-height:52px;width:auto;">
+            @else
+              <span class="footer-brand-icon">
+                <i class="bi bi-heart-pulse-fill"></i>
+              </span>
+            @endif
 
             <span>
-              <strong>Sinha Dental</strong>
-              <small>Clinic Patna</small>
+              <strong>{{ $clinicName }}</strong>
+              <small>{{ $clinicSubtitle }}</small>
             </span>
           </a>
 
@@ -302,30 +319,30 @@
 
           <div class="footer-rating">
             <div>
-              <strong>4.5</strong>
+              <strong>{{ $googleRating }}</strong>
               <span>Google Rating</span>
             </div>
 
             <div>
-              <strong>62+</strong>
+              <strong>{{ $patientReviews }}</strong>
               <span>Patient Reviews</span>
             </div>
           </div>
 
           <div class="footer-social">
-            <a href="#" aria-label="Facebook">
+            <a href="{{ $settingValue('facebook_url', '#') }}" aria-label="Facebook">
               <i class="bi bi-facebook"></i>
             </a>
 
-            <a href="#" aria-label="Instagram">
+            <a href="{{ $settingValue('instagram_url', '#') }}" aria-label="Instagram">
               <i class="bi bi-instagram"></i>
             </a>
 
-            <a href="https://wa.me/918235147460" target="_blank" aria-label="WhatsApp">
+            <a href="https://wa.me/{{ $whatsappLink }}" target="_blank" aria-label="WhatsApp">
               <i class="bi bi-whatsapp"></i>
             </a>
 
-            <a href="tel:08235147460" aria-label="Call">
+            <a href="tel:{{ $phoneLink }}" aria-label="Call">
               <i class="bi bi-telephone-fill"></i>
             </a>
           </div>
@@ -401,7 +418,7 @@
             </span>
             <div>
               <strong>Phone</strong>
-              <a href="tel:08235147460">082351 47460</a>
+              <a href="tel:{{ $phoneLink }}">{{ $displayPhone }}</a>
             </div>
           </div>
 
@@ -411,7 +428,7 @@
             </span>
             <div>
               <strong>Location</strong>
-              <p>Kidwaipuri, Patna, Bihar</p>
+              <p>{{ $shortAddress }}</p>
             </div>
           </div>
 
@@ -421,7 +438,7 @@
             </span>
             <div>
               <strong>Timing</strong>
-              <p>Mon-Sat: 9 AM - 7 PM<br>Sun: 9 AM - 2 PM</p>
+              <p>{{ $workingHours }}<br>{{ $sundayHours }}</p>
             </div>
           </div>
 
@@ -435,7 +452,7 @@
 
       <!-- FOOTER BOTTOM -->
       <div class="footer-bottom">
-        <p>© 2026 Sinha Dental Clinic. All Rights Reserved.</p>
+        <p>&copy; {{ $footerText }}</p>
 
         <div class="footer-bottom-links">
           <a href="#faqs">FAQs</a>
@@ -453,19 +470,19 @@
   <!-- ================= ULTRA PREMIUM FLOATING QUICK ACTIONS ================= -->
   <div class="floating-actions" aria-label="Quick Contact Actions">
 
-    <a href="tel:08235147460" class="floating-action-card float-call" aria-label="Call Sinha Dental Clinic">
+    <a href="tel:{{ $phoneLink }}" class="floating-action-card float-call" aria-label="Call {{ $clinicName }}">
       <span class="floating-icon">
         <i class="bi bi-telephone-fill"></i>
       </span>
 
       <span class="floating-text">
         <small>Call Clinic</small>
-        <strong>082351 47460</strong>
+        <strong>{{ $displayPhone }}</strong>
       </span>
     </a>
 
-    <a href="https://wa.me/918235147460" target="_blank" class="floating-action-card float-whatsapp"
-      aria-label="WhatsApp Sinha Dental Clinic">
+    <a href="https://wa.me/{{ $whatsappLink }}" target="_blank" class="floating-action-card float-whatsapp"
+      aria-label="WhatsApp {{ $clinicName }}">
       <span class="floating-icon">
         <i class="bi bi-whatsapp"></i>
       </span>
@@ -511,7 +528,7 @@
       <span>Services</span>
     </a>
 
-    <a href="tel:08235147460" class="mobile-nav-link mobile-call-link" data-index="2">
+    <a href="tel:{{ $phoneLink }}" class="mobile-nav-link mobile-call-link" data-index="2">
       <span class="mobile-nav-icon">
         <i class="bi bi-telephone-fill"></i>
       </span>
@@ -554,7 +571,7 @@
           <strong>Gallery Preview</strong>
         </div>
 
-        <small>Sinha Dental Clinic</small>
+          <small>{{ $clinicName }} {{ $clinicSubtitle }}</small>
       </div>
 
       <div class="lightbox-image-wrap">

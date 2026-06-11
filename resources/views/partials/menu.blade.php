@@ -117,6 +117,7 @@
         || request()->is('admin/before-after-results*')
         || request()->is('admin/appointment-enquiries*')
         || request()->is('admin/contact-enquiries*')
+        || request()->is('admin/website-settings*')
         ;
 @endphp
 
@@ -150,6 +151,14 @@
                class="sub-link {{ request()->is('admin/about-pages*') ? 'active' : '' }}">
                 <i class="fas fa-info-circle"></i>
                 About Page
+            </a>
+        @endcan
+
+        @can('website_setting_access')
+            <a href="{{ route('admin.website-settings.index') }}"
+               class="sub-link {{ request()->is('admin/website-settings*') ? 'active' : '' }}">
+                <i class="fas fa-cog"></i>
+                Website Settings
             </a>
         @endcan
 

@@ -110,6 +110,14 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => 105,
                 'title' => 'contact_enquiry_access',
             ],
+            [
+                'id'    => 106,
+                'title' => 'website_setting_access',
+            ],
+            [
+                'id'    => 107,
+                'title' => 'website_setting_edit',
+            ],
         ];
 
         Permission::insert($permissions);

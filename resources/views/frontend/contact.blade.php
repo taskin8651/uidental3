@@ -1,5 +1,5 @@
 @extends('frontend.master')
-@section('title', 'Contact Us - Sinha Dental Clinic Patna')
+@section('title', 'Contact Us - ' . (($websiteSetting?->value('clinic_name') ?? 'Sinha Dental') . ' ' . ($websiteSetting?->value('clinic_subtitle') ?? 'Clinic Patna')))
 @section('content')
   <!-- ================= CONTACT HERO ================= -->
   <section class="contact-breadcrumb-hero" id="contactHero">
@@ -34,7 +34,7 @@
         </nav>
 
         <h1>
-          Contact Sinha <span>Dental Clinic</span>
+          Contact {{ $clinicName }} <span>{{ $clinicSubtitle }}</span>
         </h1>
 
         <p>
@@ -45,7 +45,7 @@
         <div class="breadcrumb-trust-row">
           <div>
             <i class="bi bi-telephone-fill"></i>
-            <strong>082351 47460</strong>
+            <strong>{{ $displayPhone }}</strong>
           </div>
 
           <div>
@@ -55,12 +55,12 @@
 
           <div>
             <i class="bi bi-geo-alt-fill"></i>
-            <strong>Kidwaipuri, Patna</strong>
+            <strong>{{ $shortAddress }}</strong>
           </div>
         </div>
 
         <div class="contact-hero-actions">
-          <a href="tel:08235147460" class="contact-btn-primary">
+          <a href="tel:{{ $phoneLink }}" class="contact-btn-primary">
             <i class="bi bi-telephone-fill"></i>
             Call Clinic
           </a>
@@ -104,9 +104,7 @@
           <h3>Clinic Address</h3>
 
           <p>
-            Shop No. 11, Sri Ram Kunj Apartment, E Boring Canal Rd,
-            beside Yes Bank ATM, Nageshwar Colony, Kidwaipuri,
-            Patna, Bihar 800001
+            {{ $fullAddress }}
           </p>
 
           <a href="#map">
@@ -122,13 +120,13 @@
 
           <h3>Phone Number</h3>
 
-          <strong>082351 47460</strong>
+          <strong>{{ $displayPhone }}</strong>
 
           <p>
             Call clinic for appointment enquiry and visit support.
           </p>
 
-          <a href="tel:08235147460">
+          <a href="tel:{{ $phoneLink }}">
             Call Now
             <i class="bi bi-arrow-right"></i>
           </a>
@@ -141,10 +139,10 @@
 
           <h3>Clinic Timing</h3>
 
-          <strong>Mon-Sat: 9 AM - 7 PM</strong>
+          <strong>{{ $workingHours }}</strong>
 
           <p>
-            Sunday: 9:00 AM - 2:00 PM
+            {{ $sundayHours }}
           </p>
 
           <a href="book-appointment.html">
@@ -185,15 +183,15 @@
 
         <div class="ba-contact-list">
 
-          <a href="tel:08235147460" class="ba-contact-item">
+          <a href="tel:{{ $phoneLink }}" class="ba-contact-item">
             <i class="bi bi-telephone-fill"></i>
             <div>
               <strong>Call Clinic</strong>
-              <span>082351 47460</span>
+              <span>{{ $displayPhone }}</span>
             </div>
           </a>
 
-          <a href="https://wa.me/918235147460" target="_blank" class="ba-contact-item">
+          <a href="https://wa.me/{{ $whatsappLink }}" target="_blank" class="ba-contact-item">
             <i class="bi bi-whatsapp"></i>
             <div>
               <strong>WhatsApp</strong>
@@ -205,7 +203,7 @@
             <i class="bi bi-geo-alt-fill"></i>
             <div>
               <strong>Clinic Location</strong>
-              <span>Kidwaipuri, Patna</span>
+              <span>{{ $shortAddress }}</span>
             </div>
           </a>
 
@@ -334,10 +332,10 @@
           Clinic Location
         </span>
 
-        <h2>Find Sinha Dental Clinic On Map</h2>
+        <h2>Find {{ $clinicName }} {{ $clinicSubtitle }} On Map</h2>
 
         <p>
-          Visit the clinic at Kidwaipuri, Patna. Use the map area for direction support.
+          Visit the clinic at {{ $shortAddress }}. Use the map area for direction support.
         </p>
       </div>
 
@@ -348,14 +346,12 @@
           </span>
 
           <div>
-            <h3>Sinha Dental Clinic</h3>
+            <h3>{{ $clinicName }} {{ $clinicSubtitle }}</h3>
             <p>
-              Shop No. 11, Sri Ram Kunj Apartment, E Boring Canal Rd,
-              beside Yes Bank ATM, Nageshwar Colony, Kidwaipuri,
-              Patna, Bihar 800001
+              {{ $fullAddress }}
             </p>
 
-            <a href="https://www.google.com/maps/search/?api=1&query=Sinha%20Dental%20Clinic%20Kidwaipuri%20Patna"
+            <a href="https://www.google.com/maps/search/?api=1&query={{ urlencode($clinicName . ' ' . $clinicSubtitle . ' ' . $fullAddress) }}"
               target="_blank">
               Open Direction
               <i class="bi bi-arrow-up-right"></i>
@@ -364,8 +360,8 @@
         </div>
 
         <div class="map-embed">
-          <iframe title="Sinha Dental Clinic Map"
-            src="https://www.google.com/maps?q=Sinha%20Dental%20Clinic%20Kidwaipuri%20Patna&output=embed" loading="lazy"
+          <iframe title="{{ $clinicName }} {{ $clinicSubtitle }} Map"
+            src="https://www.google.com/maps?q={{ urlencode($clinicName . ' ' . $clinicSubtitle . ' ' . $fullAddress) }}&output=embed" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade">
           </iframe>
         </div>
@@ -392,12 +388,12 @@
           <h2>Ready For Dental Consultation?</h2>
 
           <p>
-            Call Sinha Dental Clinic or send enquiry for consultation, cleaning, root canal,
+            Call {{ $clinicName }} {{ $clinicSubtitle }} or send enquiry for consultation, cleaning, root canal,
             crowns, implants, braces, smile designing and emergency dental care.
           </p>
 
           <div class="appointment-actions">
-            <a href="tel:08235147460" class="btn-white">
+            <a href="tel:{{ $phoneLink }}" class="btn-white">
               <i class="bi bi-telephone-fill"></i>
               Call Clinic
             </a>

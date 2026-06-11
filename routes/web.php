@@ -32,6 +32,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('about-pages', 'AboutPageController@index')->name('about-pages.index');
     Route::post('about-pages/update', 'AboutPageController@update')->name('about-pages.update');
 
+    // Website Settings
+    Route::get('website-settings', 'WebsiteSettingsController@index')->name('website-settings.index');
+    Route::post('website-settings/update', 'WebsiteSettingsController@update')->name('website-settings.update');
+
      // Facilities
     Route::delete('facilities/destroy', 'FacilitiesController@massDestroy')->name('facilities.massDestroy');
     Route::resource('facilities', 'FacilitiesController');
