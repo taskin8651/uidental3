@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Gallery;
+use App\Models\BeforeAfterResult;
 
 class GalleryController extends Controller
 {
@@ -15,6 +16,11 @@ class GalleryController extends Controller
         ->orderBy('id', 'desc')
         ->get();
 
-    return view('frontend.gallery', compact('galleries'));
+$beforeAfterResults = BeforeAfterResult::where('status', 1)
+    ->orderBy('sort_order', 'asc')
+    ->orderBy('id', 'desc')
+    ->get();
+
+    return view('frontend.gallery', compact('galleries', 'beforeAfterResults'));
 }
 }

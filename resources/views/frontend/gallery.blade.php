@@ -189,69 +189,60 @@
 
 
   <!-- ================= BEFORE AFTER PLACEHOLDER ================= -->
-  <section class="before-after-section section-padding">
+  @php
+    $beforeAfterResults = $beforeAfterResults ?? \App\Models\BeforeAfterResult::where('status', 1)
+        ->orderBy('sort_order', 'asc')
+        ->orderBy('id', 'desc')
+        ->get();
+@endphp
+
+@if($beforeAfterResults->count())
+<section class="before-after-section section-padding">
     <div class="container">
-      <div class="section-heading" data-aos="fade-up">
-        <span class="section-badge">
-          <i class="bi bi-arrow-left-right"></i>
-          Before / After
-        </span>
+        <div class="section-heading" data-aos="fade-up">
+            <span class="section-badge">
+                <i class="bi bi-arrow-left-right"></i>
+                Before / After
+            </span>
 
-        <h2>Treatment Result Placeholder Area</h2>
+            <h2>Treatment Result Placeholder Area</h2>
 
-        <p>
-          Use this section for patient-approved before-after visuals once final assets are available.
-        </p>
-      </div>
-
-      <div class="before-after-grid">
-        <div class="result-card" data-aos="fade-up" data-aos-delay="0">
-          <div class="result-images">
-            <div>
-              <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=700&q=85"
-                alt="Before treatment placeholder">
-              <span>Before</span>
-            </div>
-
-            <div>
-              <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=700&q=85"
-                alt="After treatment placeholder">
-              <span>After</span>
-            </div>
-          </div>
-
-          <div class="result-content">
-            <span>Smile Result</span>
-            <h3>Smile Designing Result</h3>
-            <p>Placeholder for smile designing, cleaning or cosmetic dental treatment results.</p>
-          </div>
+            <p>
+                Use this section for patient-approved before-after visuals once final assets are available.
+            </p>
         </div>
 
-        <div class="result-card" data-aos="fade-up" data-aos-delay="120">
-          <div class="result-images">
-            <div>
-              <img src="https://images.unsplash.com/photo-1593022356769-11f762e25ed9?auto=format&fit=crop&w=700&q=85"
-                alt="Before dental result placeholder">
-              <span>Before</span>
-            </div>
+        <div class="before-after-grid">
+            @foreach($beforeAfterResults as $result)
+                <div class="result-card"
+                     data-aos="fade-up"
+                     data-aos-delay="{{ ($loop->index % 3) * 120 }}">
 
-            <div>
-              <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=700&q=85"
-                alt="After dental result placeholder">
-              <span>After</span>
-            </div>
-          </div>
+                    <div class="result-images">
+                        <div>
+                            <img src="{{ $result->before_image }}"
+                                 alt="{{ $result->before_image_alt ?? 'Before treatment placeholder' }}">
+                            <span>Before</span>
+                        </div>
 
-          <div class="result-content">
-            <span>Treatment Result</span>
-            <h3>Dental Care Result</h3>
-            <p>Placeholder for approved treatment result photos provided by the clinic.</p>
-          </div>
+                        <div>
+                            <img src="{{ $result->after_image }}"
+                                 alt="{{ $result->after_image_alt ?? 'After treatment placeholder' }}">
+                            <span>After</span>
+                        </div>
+                    </div>
+
+                    <div class="result-content">
+                        <span>{{ $result->tag ?? 'Smile Result' }}</span>
+                        <h3>{{ $result->title }}</h3>
+                        <p>{{ $result->description }}</p>
+                    </div>
+                </div>
+            @endforeach
         </div>
-      </div>
     </div>
-  </section>
-
+</section>
+@endif
 
 
   <!-- ================= APPOINTMENT CTA ================= -->

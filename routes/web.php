@@ -46,6 +46,9 @@ Route::resource('services', 'ServicesController');
 
     Route::delete('galleries/destroy', 'GalleriesController@massDestroy')->name('galleries.massDestroy');
 Route::resource('galleries', 'GalleriesController');
+// Before After Results
+Route::delete('before-after-results/destroy', 'BeforeAfterResultsController@massDestroy')->name('before-after-results.massDestroy');
+Route::resource('before-after-results', 'BeforeAfterResultsController');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password

@@ -113,7 +113,9 @@
         || request()->is('admin/facilities*')
         || request()->is('admin/services*')
         || request()->is('admin/doctors*')
-        || request()->is('admin/galleries*');
+        || request()->is('admin/galleries*')
+        || request()->is('admin/before-after-results*')
+        ;
 @endphp
 
 <div x-data="{ open: {{ $pageActive ? 'true' : 'false' }} }">
@@ -177,6 +179,13 @@
        class="sub-link {{ request()->is('admin/galleries*') ? 'active' : '' }}">
         <i class="fas fa-images"></i>
         Gallery
+    </a>
+@endcan
+@can('before_after_result_access')
+    <a href="{{ route('admin.before-after-results.index') }}"
+       class="sub-link {{ request()->is('admin/before-after-results*') ? 'active' : '' }}">
+        <i class="fas fa-exchange-alt"></i>
+        Before / After
     </a>
 @endcan
 
