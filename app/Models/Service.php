@@ -70,4 +70,14 @@ class Service extends Model implements HasMedia
     {
         $this->addMediaCollection('overview_image')->singleFile();
     }
+
+    public function appointmentEnquiries()
+    {
+        return $this->hasMany(AppointmentEnquiry::class);
+    }
+
+    public function contactEnquiries()
+    {
+        return $this->hasMany(ContactEnquiry::class);
+    }
 }

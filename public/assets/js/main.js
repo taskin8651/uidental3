@@ -478,29 +478,6 @@
     });
   }
 
-  function initForms() {
-    document.querySelectorAll("form").forEach(function (form) {
-      form.addEventListener("submit", function (event) {
-        const submitButton = form.querySelector("button[type='submit'], .submit-btn");
-
-        if (!submitButton || form.hasAttribute("data-allow-submit")) return;
-
-        event.preventDefault();
-
-        const oldText = submitButton.innerHTML;
-
-        submitButton.innerHTML = "Submitted <i class='bi bi-check2-circle'></i>";
-        submitButton.disabled = true;
-
-        setTimeout(function () {
-          submitButton.innerHTML = oldText;
-          submitButton.disabled = false;
-          form.reset();
-        }, 1800);
-      });
-    });
-  }
-
   function initFaqRefresh() {
     document.querySelectorAll(".accordion-button").forEach(function (button) {
       button.addEventListener("click", function () {
@@ -547,7 +524,6 @@
     initTestimonials();
     initFilters();
     initLightbox();
-    initForms();
     initFaqRefresh();
     initSmoothScroll();
   });

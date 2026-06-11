@@ -115,6 +115,8 @@
         || request()->is('admin/doctors*')
         || request()->is('admin/galleries*')
         || request()->is('admin/before-after-results*')
+        || request()->is('admin/appointment-enquiries*')
+        || request()->is('admin/contact-enquiries*')
         ;
 @endphp
 
@@ -186,6 +188,22 @@
        class="sub-link {{ request()->is('admin/before-after-results*') ? 'active' : '' }}">
         <i class="fas fa-exchange-alt"></i>
         Before / After
+    </a>
+@endcan
+
+@can('appointment_enquiry_access')
+    <a href="{{ route('admin.appointment-enquiries.index') }}"
+       class="sub-link {{ request()->is('admin/appointment-enquiries*') ? 'active' : '' }}">
+        <i class="fas fa-calendar-check"></i>
+        Appointment Enquiries
+    </a>
+@endcan
+
+@can('contact_enquiry_access')
+    <a href="{{ route('admin.contact-enquiries.index') }}"
+       class="sub-link {{ request()->is('admin/contact-enquiries*') ? 'active' : '' }}">
+        <i class="fas fa-envelope-open-text"></i>
+        Contact Enquiries
     </a>
 @endcan
 

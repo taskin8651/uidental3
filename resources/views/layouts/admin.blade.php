@@ -177,10 +177,10 @@
         {{-- Content --}}
         <main class="admin-content">
 
-            @if(session('message'))
+            @if(session('message') || session('success'))
                 <div class="alert-success">
                     <i class="fas fa-check-circle"></i>
-                    {{ session('message') }}
+                    {{ session('message') ?? session('success') }}
                 </div>
             @endif
 
