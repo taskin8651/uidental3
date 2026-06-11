@@ -119,7 +119,7 @@
       <div class="container nav-container">
 
         <!-- BRAND -->
-        <a class="navbar-brand" href="index.html" aria-label="{{ $clinicName }} Home">
+        <a class="navbar-brand" href="{{ route('home') }}" aria-label="{{ $clinicName }} Home">
           @if(!empty($websiteSetting?->logo))
             <img src="{{ $websiteSetting->logo }}" alt="{{ $clinicName }}" style="max-height:48px;width:auto;">
           @else
@@ -154,54 +154,54 @@
           <div class="mobile-menu-head d-xl-none">
             <span>Navigation</span>
             <strong>{{ $clinicName }} {{ $clinicSubtitle }}</strong>
-            <small>Premium Dental Care in Patna</small>
+            <small>Premium Dental Care in {{ $shortAddress }}</small>
           </div>
 
           <ul class="navbar-nav mx-auto mb-2 mb-xl-0">
             <li class="nav-item">
-              <a class="nav-link active" href="index.html">
+              <a class="nav-link active" href="{{ route('home') }}">
                 <i class="bi bi-house-door"></i>
                 <span>Home</span>
               </a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="about.html">
+              <a class="nav-link" href="{{ route('about') }}">
                 <i class="bi bi-info-circle"></i>
                 <span>About</span>
               </a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="services.html">
+              <a class="nav-link" href="{{ route('services.index') }}">
                 <i class="bi bi-grid-1x2"></i>
                 <span>Services</span>
               </a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="doctor.html">
+              <a class="nav-link" href="{{ route('doctor-profile') }}">
                 <i class="bi bi-person-badge"></i>
                 <span>Doctor</span>
               </a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="gallery.html">
+              <a class="nav-link" href="{{ route('gallery') }}">
                 <i class="bi bi-images"></i>
                 <span>Gallery</span>
               </a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="testimonials.html">
+              <a class="nav-link" href="{{ route('testimonials') }}">
                 <i class="bi bi-chat-quote"></i>
                 <span>Reviews</span>
               </a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="contact.html">
+              <a class="nav-link" href="{{ route('contact') }}">
                 <i class="bi bi-envelope"></i>
                 <span>Contact</span>
               </a>
@@ -220,7 +220,7 @@
               </span>
             </a>
 
-            <a href="book-appointment.html" class="header-book-btn">
+            <a href="{{ route('book-appointment') }}" class="header-book-btn">
               <i class="bi bi-calendar2-check"></i>
               <span>Book Appointment</span>
             </a>
@@ -421,6 +421,18 @@
               <a href="tel:{{ $phoneLink }}">{{ $displayPhone }}</a>
             </div>
           </div>
+
+          @if($displayEmail)
+            <div class="footer-contact-item">
+              <span>
+                <i class="bi bi-envelope-fill"></i>
+              </span>
+              <div>
+                <strong>Email</strong>
+                <a href="mailto:{{ $displayEmail }}">{{ $displayEmail }}</a>
+              </div>
+            </div>
+          @endif
 
           <div class="footer-contact-item">
             <span>

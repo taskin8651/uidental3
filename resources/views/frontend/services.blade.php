@@ -1,5 +1,5 @@
 @extends('frontend.master')
-@section('title', 'Services - Sinha Dental Clinic, Patna')
+@section('title', 'Services - ' . $clinicFullName)
 @section('content')
 
   <!-- ================= ULTRA PREMIUM SERVICES BREADCRUMB HERO ================= -->
@@ -20,7 +20,7 @@
         </span>
 
         <nav class="premium-breadcrumb" aria-label="breadcrumb">
-          <a href="index.html">
+          <a href="{{ route('home') }}">
             <i class="bi bi-house-door-fill"></i>
             Home
           </a>
@@ -29,7 +29,7 @@
             <i class="bi bi-chevron-right"></i>
           </span>
 
-          <a href="services.html" class="active">
+          <a href="{{ route('services.index') }}" class="active">
             Services
           </a>
         </nav>
@@ -39,7 +39,7 @@
         </h1>
 
         <p>
-          Explore complete dental care at Sinha Dental Clinic, Patna — from consultation,
+          Explore complete dental care at {{ $clinicFullName }} — from consultation,
           cleaning and root canal to crowns, implants, braces, smile designing and emergency care.
         </p>
 
@@ -66,7 +66,7 @@
             View Treatments
           </a>
 
-          <a href="tel:08235147460" class="service-btn-light">
+          <a href="tel:{{ $phoneLink }}" class="service-btn-light">
             <i class="bi bi-telephone-fill"></i>
             Call Clinic
           </a>
@@ -92,7 +92,7 @@
           <h2>Complete Dental Treatments With Comfort & Clear Guidance</h2>
 
           <p>
-            Sinha Dental Clinic offers professional dental services for routine care, pain relief,
+            {{ $clinicFullName }} offers professional dental services for routine care, pain relief,
             smile improvement, replacement teeth and emergency support. Every service card below is
             designed to help patients quickly understand treatment options and take action.
           </p>
@@ -136,7 +136,7 @@
                 Our Treatments
             </span>
 
-            <h2>Dental Services Available At Sinha Dental Clinic</h2>
+            <h2>Dental Services Available At {{ $clinicFullName }}</h2>
 
             <p>
                 Clean service grid with quick information, treatment category and appointment CTA buttons.
@@ -188,7 +188,7 @@
                         </a>
 
                         @if($service->card_style === 'urgent')
-                            <a href="tel:08235147460" class="service-book">
+                            <a href="tel:{{ $phoneLink }}" class="service-book">
                                 Call
                             </a>
                         @else
@@ -297,22 +297,22 @@ document.addEventListener("DOMContentLoaded", function () {
           <h2>Need Help Choosing The Right Dental Treatment?</h2>
 
           <p>
-            Call Sinha Dental Clinic or send an appointment enquiry for consultation, cleaning,
+            Call {{ $clinicFullName }} or send an appointment enquiry for consultation, cleaning,
             root canal, crowns, implants, braces, smile designing and emergency dental care.
           </p>
 
           <div class="appointment-actions">
-            <a href="tel:08235147460" class="btn-white">
+            <a href="tel:{{ $phoneLink }}" class="btn-white">
               <i class="bi bi-telephone-fill"></i>
               Call Clinic
             </a>
 
-            <a href="contact.html" class="btn-outline-white">
+            <a href="{{ route('contact') }}" class="btn-outline-white">
               <i class="bi bi-calendar-heart-fill"></i>
               Appointment Enquiry
             </a>
 
-            <a href="contact.html#map" class="btn-outline-white">
+            <a href="{{ route('contact') }}#map" class="btn-outline-white">
               <i class="bi bi-geo-alt-fill"></i>
               Get Direction
             </a>
@@ -337,23 +337,23 @@ document.addEventListener("DOMContentLoaded", function () {
         <div class="footer-top-content">
           <span>
             <i class="bi bi-heart-pulse-fill"></i>
-            Sinha Dental Clinic
+            {{ $clinicFullName }}
           </span>
 
           <h3>Need dental care guidance?</h3>
 
           <p>
-            Book consultation, call clinic or get direction to our Kidwaipuri, Patna location.
+            Book consultation, call clinic or get direction to our {{ $shortAddress }} location.
           </p>
         </div>
 
         <div class="footer-top-actions">
-          <a href="book-appointment.html" class="footer-white-btn">
+          <a href="{{ route('book-appointment') }}" class="footer-white-btn">
             <i class="bi bi-calendar2-check"></i>
             Appointment
           </a>
 
-          <a href="tel:08235147460" class="footer-outline-btn">
+          <a href="tel:{{ $phoneLink }}" class="footer-outline-btn">
             <i class="bi bi-telephone-fill"></i>
             Call Clinic
           </a>

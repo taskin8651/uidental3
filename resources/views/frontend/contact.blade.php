@@ -1,5 +1,5 @@
 @extends('frontend.master')
-@section('title', 'Contact Us - ' . (($websiteSetting?->value('clinic_name') ?? 'Sinha Dental') . ' ' . ($websiteSetting?->value('clinic_subtitle') ?? 'Clinic Patna')))
+@section('title', 'Contact Us - ' . $clinicFullName)
 @section('content')
   <!-- ================= CONTACT HERO ================= -->
   <section class="contact-breadcrumb-hero" id="contactHero">
@@ -19,7 +19,7 @@
         </span>
 
         <nav class="premium-breadcrumb" aria-label="breadcrumb">
-          <a href="index.html">
+          <a href="{{ route('home') }}">
             <i class="bi bi-house-door-fill"></i>
             Home
           </a>
@@ -28,7 +28,7 @@
             <i class="bi bi-chevron-right"></i>
           </span>
 
-          <a href="contact.html" class="active">
+          <a href="{{ route('contact') }}" class="active">
             Contact
           </a>
         </nav>
@@ -145,11 +145,32 @@
             {{ $sundayHours }}
           </p>
 
-          <a href="book-appointment.html">
+          <a href="{{ route('book-appointment') }}">
             Book Visit
             <i class="bi bi-arrow-right"></i>
           </a>
         </div>
+
+        @if($displayEmail)
+          <div class="contact-info-card" data-aos="fade-up" data-aos-delay="300">
+            <span class="contact-info-icon">
+              <i class="bi bi-envelope-fill"></i>
+            </span>
+
+            <h3>Email Address</h3>
+
+            <strong>{{ $displayEmail }}</strong>
+
+            <p>
+              Send email for appointment enquiry and clinic support.
+            </p>
+
+            <a href="mailto:{{ $displayEmail }}">
+              Send Email
+              <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        @endif
 
       </div>
     </div>
@@ -199,7 +220,7 @@
             </div>
           </a>
 
-          <a href="contact.html#map" class="ba-contact-item">
+          <a href="{{ route('contact') }}#map" class="ba-contact-item">
             <i class="bi bi-geo-alt-fill"></i>
             <div>
               <strong>Clinic Location</strong>
@@ -398,7 +419,7 @@
               Call Clinic
             </a>
 
-            <a href="book-appointment.html" class="btn-outline-white">
+            <a href="{{ route('book-appointment') }}" class="btn-outline-white">
               <i class="bi bi-calendar-heart-fill"></i>
               Appointment Enquiry
             </a>

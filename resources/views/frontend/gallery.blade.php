@@ -20,7 +20,7 @@
         </span>
 
         <nav class="premium-breadcrumb" aria-label="breadcrumb">
-          <a href="index.html">
+          <a href="{{ route('home') }}">
             <i class="bi bi-house-door-fill"></i>
             Home
           </a>
@@ -29,7 +29,7 @@
             <i class="bi bi-chevron-right"></i>
           </span>
 
-          <a href="gallery.html" class="active">
+          <a href="{{ route('gallery') }}" class="active">
             Gallery
           </a>
         </nav>
@@ -39,7 +39,7 @@
         </h1>
 
         <p>
-          Explore Sinha Dental Clinic visual placeholders for reception, dental chair,
+          Explore {{ $clinicFullName }} visual placeholders for reception, dental chair,
           equipment, sterilization area, team moments and before-after treatment results.
         </p>
 
@@ -66,7 +66,7 @@
             View Gallery
           </a>
 
-          <a href="tel:08235147460" class="gallery-btn-light">
+          <a href="tel:{{ $phoneLink }}" class="gallery-btn-light">
             <i class="bi bi-telephone-fill"></i>
             Call Clinic
           </a>
@@ -261,22 +261,22 @@
           <h2>Like The Clinic Setup? Book Your Dental Visit</h2>
 
           <p>
-            Visit Sinha Dental Clinic for consultation, cleaning, root canal, crowns,
+            Visit {{ $clinicFullName }} for consultation, cleaning, root canal, crowns,
             implants, braces, smile designing and complete oral care.
           </p>
 
           <div class="appointment-actions">
-            <a href="tel:08235147460" class="btn-white">
+            <a href="tel:{{ $phoneLink }}" class="btn-white">
               <i class="bi bi-telephone-fill"></i>
               Call Clinic
             </a>
 
-            <a href="contact.html" class="btn-outline-white">
+            <a href="{{ route('contact') }}" class="btn-outline-white">
               <i class="bi bi-calendar-heart-fill"></i>
               Appointment Enquiry
             </a>
 
-            <a href="contact.html#map" class="btn-outline-white">
+            <a href="{{ route('contact') }}#map" class="btn-outline-white">
               <i class="bi bi-geo-alt-fill"></i>
               Get Direction
             </a>

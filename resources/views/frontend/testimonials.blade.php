@@ -20,7 +20,7 @@
         </span>
 
         <nav class="premium-breadcrumb" aria-label="breadcrumb">
-          <a href="index.html">
+          <a href="{{ route('home') }}">
             <i class="bi bi-house-door-fill"></i>
             Home
           </a>
@@ -29,7 +29,7 @@
             <i class="bi bi-chevron-right"></i>
           </span>
 
-          <a href="reviews.html" class="active">
+          <a href="{{ route('testimonials') }}" class="active">
             Reviews
           </a>
         </nav>
@@ -39,19 +39,19 @@
         </h1>
 
         <p>
-          Explore patient review placeholders and Google rating highlight for Sinha Dental Clinic,
-          Kidwaipuri, Patna with a clean, trust-focused testimonial layout.
+          Explore patient review placeholders and Google rating highlight for {{ $clinicFullName }},
+          {{ $shortAddress }} with a clean, trust-focused testimonial layout.
         </p>
 
         <div class="breadcrumb-trust-row">
           <div>
             <i class="bi bi-star-fill"></i>
-            <strong>4.5 Google Rating</strong>
+            <strong>{{ $googleRating }} Google Rating</strong>
           </div>
 
           <div>
             <i class="bi bi-chat-square-heart-fill"></i>
-            <strong>62 Patient Reviews</strong>
+            <strong>{{ $patientReviewCount }} Patient Reviews</strong>
           </div>
 
           <div>
@@ -66,7 +66,7 @@
             View Reviews
           </a>
 
-          <a href="tel:08235147460" class="reviews-btn-light">
+          <a href="tel:{{ $phoneLink }}" class="reviews-btn-light">
             <i class="bi bi-telephone-fill"></i>
             Call Clinic
           </a>
@@ -85,7 +85,7 @@
 
         <div class="rating-score-card" data-aos="fade-right">
           <div class="rating-circle">
-            <strong>4.5</strong>
+            <strong>{{ $googleRating }}</strong>
             <span>Google Rating</span>
           </div>
 
@@ -98,7 +98,7 @@
           </div>
 
           <p>
-            Based on 62 patient reviews for Sinha Dental Clinic.
+            Based on {{ $patientReviewCount }} patient reviews for {{ $clinicFullName }}.
           </p>
 
           <div class="rating-meta">
@@ -110,8 +110,8 @@
 
             <div>
               <i class="bi bi-geo-alt-fill"></i>
-              <strong>Patna</strong>
-              <span>Kidwaipuri</span>
+              <strong>{{ $shortAddress }}</strong>
+              <span>Clinic Location</span>
             </div>
           </div>
         </div>
@@ -228,14 +228,14 @@
 
         <div>
           <span>Trusted Dental Care</span>
-          <h2>4.5 Google Rating With 62 Patient Reviews</h2>
+          <h2>{{ $googleRating }} Google Rating With {{ $patientReviewCount }} Patient Reviews</h2>
           <p>
-            Visit Sinha Dental Clinic for consultation, cleaning, root canal, crowns, implants,
+            Visit {{ $clinicFullName }} for consultation, cleaning, root canal, crowns, implants,
             braces, smile designing and emergency dental care.
           </p>
         </div>
 
-        <a href="tel:08235147460" class="reviews-btn-primary">
+        <a href="tel:{{ $phoneLink }}" class="reviews-btn-primary">
           <i class="bi bi-telephone-fill"></i>
           Call Clinic
         </a>
@@ -261,22 +261,22 @@
           <h2>Ready For A Trusted Dental Consultation?</h2>
 
           <p>
-            Book your visit at Sinha Dental Clinic for consultation, cleaning, root canal,
+            Book your visit at {{ $clinicFullName }} for consultation, cleaning, root canal,
             crowns, implants, braces, smile designing and complete oral care.
           </p>
 
           <div class="appointment-actions">
-            <a href="tel:08235147460" class="btn-white">
+            <a href="tel:{{ $phoneLink }}" class="btn-white">
               <i class="bi bi-telephone-fill"></i>
               Call Clinic
             </a>
 
-            <a href="contact.html" class="btn-outline-white">
+            <a href="{{ route('contact') }}" class="btn-outline-white">
               <i class="bi bi-calendar-heart-fill"></i>
               Appointment Enquiry
             </a>
 
-            <a href="contact.html#map" class="btn-outline-white">
+            <a href="{{ route('contact') }}#map" class="btn-outline-white">
               <i class="bi bi-geo-alt-fill"></i>
               Get Direction
             </a>

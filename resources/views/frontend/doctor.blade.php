@@ -1,5 +1,5 @@
 @extends('frontend.master')
-@section('title', 'Doctor & Team Care - Sinha Dental Clinic, Patna')
+@section('title', 'Doctor & Team Care - ' . $clinicFullName)
 @section('content')
 
 
@@ -21,7 +21,7 @@
         </span>
 
         <nav class="premium-breadcrumb" aria-label="breadcrumb">
-          <a href="index.html">
+          <a href="{{ route('home') }}">
             <i class="bi bi-house-door-fill"></i>
             Home
           </a>
@@ -30,7 +30,7 @@
             <i class="bi bi-chevron-right"></i>
           </span>
 
-          <a href="doctor.html" class="active">
+          <a href="{{ route('doctor-profile') }}" class="active">
             Doctor / Team
           </a>
         </nav>
@@ -40,7 +40,7 @@
         </h1>
 
         <p>
-          Meet the dental care profile area of Sinha Dental Clinic, Patna with consultation timing,
+          Meet the dental care profile area of {{ $clinicFullName }} with consultation timing,
           specialization placeholder and patient-first care approach.
         </p>
 
@@ -62,12 +62,12 @@
         </div>
 
         <div class="doctor-hero-actions">
-          <a href="book-appointment.html" class="doctor-btn-primary">
+          <a href="{{ route('book-appointment') }}" class="doctor-btn-primary">
             <i class="bi bi-calendar2-check-fill"></i>
             Book Appointment
           </a>
 
-          <a href="tel:08235147460" class="doctor-btn-light">
+          <a href="tel:{{ $phoneLink }}" class="doctor-btn-light">
             <i class="bi bi-telephone-fill"></i>
             Call Clinic
           </a>
@@ -92,21 +92,21 @@
             <div class="doctor-image-area" data-aos="fade-right">
                 <div class="doctor-image-frame">
                     <img src="{{ $doctorProfile->image }}"
-                         alt="{{ $doctorProfile->image_alt ?? 'Sinha Dental Clinic doctor profile' }}">
+                         alt="{{ $doctorProfile->image_alt ?? $clinicFullName . ' doctor profile' }}">
 
                     <div class="doctor-rating-card">
                         <i class="bi bi-star-fill"></i>
                         <div>
-                            <strong>{{ $doctorProfile->rating_text ?? '4.5 Rating' }}</strong>
-                            <span>{{ $doctorProfile->review_text ?? '62 Patient Reviews' }}</span>
+                            <strong>{{ $doctorProfile->rating_text ?? $googleRating . ' Rating' }}</strong>
+                            <span>{{ $doctorProfile->review_text ?? $patientReviewCount . ' Patient Reviews' }}</span>
                         </div>
                     </div>
 
                     <div class="doctor-timing-card">
                         <i class="bi bi-clock-fill"></i>
                         <div>
-                            <strong>{{ $doctorProfile->timing_days ?? 'Mon-Sat' }}</strong>
-                            <span>{{ $doctorProfile->timing_hours ?? '9 AM - 7 PM' }}</span>
+                            <strong>{{ $doctorProfile->timing_days ?? 'Clinic Timing' }}</strong>
+                            <span>{{ $doctorProfile->timing_hours ?? $workingHours }}</span>
                         </div>
                     </div>
                 </div>
@@ -121,7 +121,7 @@
                 <h2>{{ $doctorProfile->heading ?? 'Professional Dental Care Profile' }}</h2>
 
                 <p>
-                    {{ $doctorProfile->description ?? 'This doctor profile section is designed for Sinha Dental Clinic to showcase the main dentist, qualification, specialization and care approach in a clean and premium way.' }}
+                    {{ $doctorProfile->description ?? 'This doctor profile section is designed for ' . $clinicFullName . ' to showcase the main dentist, qualification, specialization and care approach in a clean and premium way.' }}
                 </p>
 
                 <div class="doctor-profile-name">
@@ -162,7 +162,7 @@
                         Book Consultation
                     </a>
 
-                    <a href="tel:08235147460" class="doctor-btn-light">
+                    <a href="tel:{{ $phoneLink }}" class="doctor-btn-light">
                         <i class="bi bi-telephone-fill"></i>
                         Call Now
                     </a>
@@ -202,7 +202,7 @@
           </span>
 
           <h3>Monday - Saturday</h3>
-          <strong>9:00 AM - 7:00 PM</strong>
+          <strong>{{ $workingHours }}</strong>
           <p>Regular clinic consultation and treatment timing.</p>
         </div>
 
@@ -212,7 +212,7 @@
           </span>
 
           <h3>Sunday</h3>
-          <strong>9:00 AM - 2:00 PM</strong>
+          <strong>{{ $sundayHours }}</strong>
           <p>Limited Sunday consultation support for patients.</p>
         </div>
 
@@ -222,7 +222,7 @@
           </span>
 
           <h3>Call Clinic</h3>
-          <strong>082351 47460</strong>
+          <strong>{{ $displayPhone }}</strong>
           <p>Call before visit for appointment and availability.</p>
         </div>
 
@@ -385,22 +385,22 @@
           <h2>Need Dental Care Guidance?</h2>
 
           <p>
-            Call Sinha Dental Clinic or book your visit for consultation, treatment guidance,
+            Call {{ $clinicFullName }} or book your visit for consultation, treatment guidance,
             dental care support and smile confidence.
           </p>
 
           <div class="appointment-actions">
-            <a href="tel:08235147460" class="btn-white">
+            <a href="tel:{{ $phoneLink }}" class="btn-white">
               <i class="bi bi-telephone-fill"></i>
               Call Clinic
             </a>
 
-            <a href="contact.html" class="btn-outline-white">
+            <a href="{{ route('contact') }}" class="btn-outline-white">
               <i class="bi bi-calendar-heart-fill"></i>
               Appointment Enquiry
             </a>
 
-            <a href="contact.html#map" class="btn-outline-white">
+            <a href="{{ route('contact') }}#map" class="btn-outline-white">
               <i class="bi bi-geo-alt-fill"></i>
               Get Direction
             </a>
@@ -425,23 +425,23 @@
         <div class="footer-top-content">
           <span>
             <i class="bi bi-heart-pulse-fill"></i>
-            Sinha Dental Clinic
+            {{ $clinicFullName }}
           </span>
 
           <h3>Need dental care guidance?</h3>
 
           <p>
-            Book consultation, call clinic or get direction to our Kidwaipuri, Patna location.
+            Book consultation, call clinic or get direction to our {{ $shortAddress }} location.
           </p>
         </div>
 
         <div class="footer-top-actions">
-          <a href="book-appointment.html" class="footer-white-btn">
+          <a href="{{ route('book-appointment') }}" class="footer-white-btn">
             <i class="bi bi-calendar2-check"></i>
             Appointment
           </a>
 
-          <a href="tel:08235147460" class="footer-outline-btn">
+          <a href="tel:{{ $phoneLink }}" class="footer-outline-btn">
             <i class="bi bi-telephone-fill"></i>
             Call Clinic
           </a>

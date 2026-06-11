@@ -16,11 +16,11 @@
 
         <span class="hero-mini-badge">
           <i class="bi bi-stars"></i>
-          Premium Dental Care in Patna
+          Premium Dental Care in {{ $shortAddress }}
         </span>
 
         <nav class="premium-breadcrumb" aria-label="breadcrumb">
-          <a href="index.html">
+          <a href="{{ route('home') }}">
             <i class="bi bi-house-door-fill"></i>
             Home
           </a>
@@ -29,44 +29,44 @@
             <i class="bi bi-chevron-right"></i>
           </span>
 
-          <a href="about.html" class="active">
+          <a href="{{ route('about') }}" class="active">
             About Clinic
           </a>
         </nav>
 
         <h1>
-          About Sinha <span>Dental Clinic</span>
+          About {{ $clinicName }} <span>{{ $clinicSubtitle }}</span>
         </h1>
 
         <p>
-          A clean, patient-friendly and trusted dental clinic in Kidwaipuri, Patna focused on
+          A clean, patient-friendly and trusted dental clinic in {{ $shortAddress }} focused on
           comfortable consultation, hygiene-first treatment and complete oral care for every smile.
         </p>
 
         <div class="breadcrumb-trust-row">
           <div>
             <i class="bi bi-star-fill"></i>
-            <strong>4.5 Google Rating</strong>
+            <strong>{{ $googleRating }} Google Rating</strong>
           </div>
 
           <div>
             <i class="bi bi-chat-square-heart-fill"></i>
-            <strong>62 Patient Reviews</strong>
+            <strong>{{ $patientReviewCount }} Patient Reviews</strong>
           </div>
 
           <div>
             <i class="bi bi-geo-alt-fill"></i>
-            <strong>Kidwaipuri, Patna</strong>
+            <strong>{{ $shortAddress }}</strong>
           </div>
         </div>
 
         <div class="about-hero-actions">
-          <a href="book-appointment.html" class="about-btn-primary">
+          <a href="{{ route('book-appointment') }}" class="about-btn-primary">
             <i class="bi bi-calendar2-check-fill"></i>
             Book Appointment
           </a>
 
-          <a href="tel:08235147460" class="about-btn-light">
+          <a href="tel:{{ $phoneLink }}" class="about-btn-light">
             <i class="bi bi-telephone-fill"></i>
             Call Clinic
           </a>
@@ -109,7 +109,7 @@
                 <div class="about-image-area reveal">
                     <div class="about-image-frame">
                         <img src="{{ $aboutPage->image }}"
-                             alt="{{ $aboutPage->image_alt ?? 'Dental care at Sinha Dental Clinic' }}">
+                             alt="{{ $aboutPage->image_alt ?? 'Dental care at ' . $clinicFullName }}">
 
                         <div class="about-exp-card">
                             <strong>{{ $aboutPage->card_title ?? 'Trusted' }}</strong>
@@ -182,7 +182,7 @@
                         <i class="bi bi-star-fill"></i>
                     </div>
 
-                    <strong class="counter" data-target="{{ $aboutPage->google_rating ?? '4.5' }}">
+                    <strong class="counter" data-target="{{ $aboutPage->google_rating ?? $googleRating }}">
                         0
                     </strong>
 
@@ -194,7 +194,7 @@
                         <i class="bi bi-chat-square-heart-fill"></i>
                     </div>
 
-                    <strong class="counter" data-target="{{ $aboutPage->patient_reviews ?? '62' }}">
+                    <strong class="counter" data-target="{{ $aboutPage->patient_reviews ?? $patientReviewCount }}">
                         0
                     </strong>
 
@@ -216,9 +216,9 @@
                         <i class="bi bi-geo-alt-fill"></i>
                     </div>
 
-                    <strong>{{ $aboutPage->clinic_location ?? 'Patna' }}</strong>
+                    <strong>{{ $aboutPage->clinic_location ?? $shortAddress }}</strong>
 
-                    <span>Kidwaipuri Location</span>
+                    <span>Clinic Location</span>
                 </div>
             </div>
         </div>
@@ -419,22 +419,22 @@
           <h2>Ready For A Healthier & Confident Smile?</h2>
 
           <p>
-            Visit Sinha Dental Clinic for dental consultation, cleaning, root canal, crowns,
+            Visit {{ $clinicFullName }} for dental consultation, cleaning, root canal, crowns,
             implants, braces, smile designing and complete oral care.
           </p>
 
           <div class="appointment-actions">
-            <a href="tel:08235147460" class="btn-white">
+            <a href="tel:{{ $phoneLink }}" class="btn-white">
               <i class="bi bi-telephone-fill"></i>
               Call Clinic
             </a>
 
-            <a href="contact.html" class="btn-outline-white">
+            <a href="{{ route('contact') }}" class="btn-outline-white">
               <i class="bi bi-calendar-heart-fill"></i>
               Appointment Enquiry
             </a>
 
-            <a href="contact.html#map" class="btn-outline-white">
+            <a href="{{ route('contact') }}#map" class="btn-outline-white">
               <i class="bi bi-geo-alt-fill"></i>
               Get Direction
             </a>

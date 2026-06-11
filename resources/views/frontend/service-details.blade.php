@@ -1,7 +1,7 @@
 @extends('frontend.master')
 
-@section('title', $service->seo_title ?: $service->title . ' - Sinha Dental Clinic, Patna')
-@section('meta_description', $service->seo_description ?: ($service->short_description ?: 'Dental treatment details at Sinha Dental Clinic, Patna.'))
+@section('title', $service->seo_title ?: $service->title . ' - ' . $clinicFullName)
+@section('meta_description', $service->seo_description ?: ($service->short_description ?: 'Dental treatment details at ' . $clinicFullName . '.'))
 
 @section('content')
 @php
@@ -112,14 +112,14 @@
                     </a>
                 </nav>
 
-                <h1>{{ $service->title }} <span>In Patna</span></h1>
+                <h1>{{ $service->title }} <span>In {{ $shortAddress }}</span></h1>
 
                 <p>
-                    {{ $service->short_description ?: 'Get professional dental care with clear consultation, hygiene-focused treatment and patient-friendly guidance at Sinha Dental Clinic, Patna.' }}
+                    {{ $service->short_description ?: 'Get professional dental care with clear consultation, hygiene-focused treatment and patient-friendly guidance at ' . $clinicFullName . '.' }}
                 </p>
 
                 <div class="service-hero-actions">
-                    <a href="tel:08235147460" class="service-btn-primary">
+                    <a href="tel:{{ $phoneLink }}" class="service-btn-primary">
                         <i class="bi bi-telephone-fill"></i>
                         Call Clinic
                     </a>
@@ -166,7 +166,7 @@
                     <i class="bi bi-shield-check"></i>
                     <div>
                         <strong>{{ $service->overview_badge_text ?: 'Hygiene First Care' }}</strong>
-                        <span>Sinha Dental Clinic, Patna</span>
+                        <span>{{ $clinicFullName }}</span>
                     </div>
                 </div>
             </div>
@@ -333,7 +333,7 @@
                                  aria-labelledby="{{ $faqId }}Heading"
                                  data-bs-parent="#serviceFaqAccordion">
                                 <div class="accordion-body">
-                                    {{ $faq['answer'] ?: 'Please call Sinha Dental Clinic for more details about this service.' }}
+                                    {{ $faq['answer'] ?: 'Please call ' . $clinicFullName . ' for more details about this service.' }}
                                 </div>
                             </div>
                         </div>
@@ -355,7 +355,7 @@
 
                 <h2>More Dental Treatments</h2>
 
-                <p>Explore similar dental services available at Sinha Dental Clinic.</p>
+                <p>Explore similar dental services available at {{ $clinicFullName }}.</p>
             </div>
 
             <div class="related-services-grid">
@@ -386,16 +386,16 @@
                 <h2>Need Help With {{ $service->title }}?</h2>
 
                 <p>
-                    Call Sinha Dental Clinic or book an appointment enquiry for consultation and treatment guidance.
+                    Call {{ $clinicFullName }} or book an appointment enquiry for consultation and treatment guidance.
                 </p>
 
                 <div class="appointment-actions">
-                    <a href="tel:08235147460" class="btn-white">
+                    <a href="tel:{{ $phoneLink }}" class="btn-white">
                         <i class="bi bi-telephone-fill"></i>
                         Call Clinic
                     </a>
 
-                    <a href="https://wa.me/918235147460" target="_blank" class="btn-outline-white">
+                    <a href="https://wa.me/{{ $whatsappLink }}" target="_blank" class="btn-outline-white">
                         <i class="bi bi-whatsapp"></i>
                         WhatsApp
                     </a>

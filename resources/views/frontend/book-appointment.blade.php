@@ -20,7 +20,7 @@
           </span>
 
           <nav class="premium-breadcrumb" aria-label="breadcrumb">
-            <a href="index.html">
+            <a href="{{ route('home') }}">
               <i class="bi bi-house-door-fill"></i>
               Home
             </a>
@@ -29,7 +29,7 @@
               <i class="bi bi-chevron-right"></i>
             </span>
 
-            <a href="book-appointment.html" class="active">
+            <a href="{{ route('book-appointment') }}" class="active">
               Book Appointment
             </a>
           </nav>
@@ -44,12 +44,12 @@
           </p>
 
           <div class="appointment-hero-actions">
-            <a href="book-appointment.htmlForm" class="appointment-btn-primary">
+            <a href="#appointmentForm" class="appointment-btn-primary">
               <i class="bi bi-calendar-heart-fill"></i>
               Fill Appointment Form
             </a>
 
-            <a href="tel:08235147460" class="appointment-btn-light">
+            <a href="tel:{{ $phoneLink }}" class="appointment-btn-light">
               <i class="bi bi-telephone-fill"></i>
               Call Clinic
             </a>
@@ -70,12 +70,12 @@
           <div class="hero-card-points">
             <div>
               <i class="bi bi-star-fill"></i>
-              <span>4.5 Google Rating</span>
+              <span>{{ $googleRating }} Google Rating</span>
             </div>
 
             <div>
               <i class="bi bi-chat-square-heart-fill"></i>
-              <span>62 Patient Reviews</span>
+              <span>{{ $patientReviewCount }} Patient Reviews</span>
             </div>
 
             <div>
@@ -112,15 +112,15 @@
 
           <div class="appointment-contact-list">
 
-            <a href="tel:08235147460" class="appointment-contact-item">
+            <a href="tel:{{ $phoneLink }}" class="appointment-contact-item">
               <i class="bi bi-telephone-fill"></i>
               <div>
                 <strong>Call Clinic</strong>
-                <span>082351 47460</span>
+                <span>{{ $displayPhone }}</span>
               </div>
             </a>
 
-            <a href="https://wa.me/918235147460" target="_blank" class="appointment-contact-item">
+            <a href="https://wa.me/{{ $whatsappLink }}" target="_blank" class="appointment-contact-item">
               <i class="bi bi-whatsapp"></i>
               <div>
                 <strong>WhatsApp</strong>
@@ -128,11 +128,11 @@
               </div>
             </a>
 
-            <a href="contact.html#map" class="appointment-contact-item">
+            <a href="{{ route('contact') }}#map" class="appointment-contact-item">
               <i class="bi bi-geo-alt-fill"></i>
               <div>
                 <strong>Clinic Location</strong>
-                <span>Kidwaipuri, Patna</span>
+                <span>{{ $shortAddress }}</span>
               </div>
             </a>
 
@@ -294,7 +294,7 @@
           </span>
 
           <h3>Monday - Saturday</h3>
-          <strong>9:00 AM - 7:00 PM</strong>
+          <strong>{{ $workingHours }}</strong>
           <p>Regular clinic consultation and treatment timing.</p>
         </div>
 
@@ -304,7 +304,7 @@
           </span>
 
           <h3>Sunday</h3>
-          <strong>9:00 AM - 2:00 PM</strong>
+          <strong>{{ $sundayHours }}</strong>
           <p>Limited Sunday consultation support for patients.</p>
         </div>
 
@@ -314,7 +314,7 @@
           </span>
 
           <h3>Call Clinic</h3>
-          <strong>082351 47460</strong>
+          <strong>{{ $displayPhone }}</strong>
           <p>Call before visit for appointment and availability.</p>
         </div>
 
@@ -335,14 +335,13 @@
 
         <div class="location-content">
           <span>Clinic Address</span>
-          <h2>Visit Sinha Dental Clinic, Kidwaipuri Patna</h2>
+          <h2>Visit {{ $clinicFullName }}, {{ $shortAddress }}</h2>
           <p>
-            Shop No. 11, Sri Ram Kunj Apartment, E Boring Canal Rd, beside Yes Bank ATM,
-            Nageshwar Colony, Kidwaipuri, Patna, Bihar 800001
+            {{ $fullAddress }}
           </p>
         </div>
 
-        <a href="contact.html#map" class="appointment-btn-primary">
+        <a href="{{ route('contact') }}#map" class="appointment-btn-primary">
           <i class="bi bi-signpost-2-fill"></i>
           Get Direction
         </a>
@@ -369,22 +368,22 @@
           <h2>Ready For A Healthier Smile?</h2>
 
           <p>
-            Submit your appointment enquiry or call Sinha Dental Clinic for consultation, cleaning,
+            Submit your appointment enquiry or call {{ $clinicFullName }} for consultation, cleaning,
             root canal, crowns, implants, braces, smile designing and emergency dental care.
           </p>
 
           <div class="appointment-actions">
-            <a href="book-appointment.htmlForm" class="btn-white">
+            <a href="#appointmentForm" class="btn-white">
               <i class="bi bi-calendar-heart-fill"></i>
               Fill Form
             </a>
 
-            <a href="tel:08235147460" class="btn-outline-white">
+            <a href="tel:{{ $phoneLink }}" class="btn-outline-white">
               <i class="bi bi-telephone-fill"></i>
               Call Clinic
             </a>
 
-            <a href="contact.html#map" class="btn-outline-white">
+            <a href="{{ route('contact') }}#map" class="btn-outline-white">
               <i class="bi bi-geo-alt-fill"></i>
               Get Direction
             </a>
