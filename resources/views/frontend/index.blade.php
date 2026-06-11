@@ -1249,85 +1249,46 @@ document.addEventListener("DOMContentLoaded", function () {
         <!-- RIGHT FAQ ACCORDION -->
         <div class="faq-accordion-wrap">
           <div class="accordion premium-accordion" id="faqAccordion">
+            @forelse($faqs as $faq)
+              @php
+                $faqId = 'faqItem' . $faq->id;
+                $faqAnswer = str_replace(
+                    ['{working_hours}', '{sunday_hours}', '{phone}', '{clinic_name}'],
+                    [$workingHours, $sundayHours, $displayPhone, $clinicFullName],
+                    $faq->answer ?? ''
+                );
+              @endphp
 
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="faqHeadingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne"
-                  aria-expanded="true" aria-controls="faqOne">
-                  <span class="faq-question-icon">
-                    <i class="bi bi-clock-history"></i>
-                  </span>
-                  <span>What is the clinic timing?</span>
-                </button>
-              </h2>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="{{ $faqId }}Heading">
+                  <button class="accordion-button {{ $loop->first ? '' : 'collapsed' }}" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#{{ $faqId }}"
+                    aria-expanded="{{ $loop->first ? 'true' : 'false' }}"
+                    aria-controls="{{ $faqId }}">
+                    <span class="faq-question-icon">
+                      <i class="{{ $faq->icon_class ?: 'bi bi-question-circle' }}"></i>
+                    </span>
+                    <span>{{ $faq->question }}</span>
+                  </button>
+                </h2>
 
-              <div id="faqOne" class="accordion-collapse collapse show" aria-labelledby="faqHeadingOne"
-                data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                  Clinic timing is {{ $workingHours }} and {{ $sundayHours }}.
+                <div id="{{ $faqId }}"
+                  class="accordion-collapse collapse {{ $loop->first ? 'show' : '' }}"
+                  aria-labelledby="{{ $faqId }}Heading"
+                  data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    {{ $faqAnswer }}
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="faqHeadingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#faqTwo" aria-expanded="false" aria-controls="faqTwo">
-                  <span class="faq-question-icon">
-                    <i class="bi bi-calendar2-check"></i>
-                  </span>
-                  <span>Can I book appointment online?</span>
-                </button>
-              </h2>
-
-              <div id="faqTwo" class="accordion-collapse collapse" aria-labelledby="faqHeadingTwo"
-                data-bs-parent="#faqAccordion">
+            @empty
+              <div class="accordion-item">
                 <div class="accordion-body">
-                  Yes, you can submit the appointment enquiry form or call the clinic directly for quick booking
-                  support.
+                  No FAQs added yet.
                 </div>
               </div>
-            </div>
-
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="faqHeadingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#faqThree" aria-expanded="false" aria-controls="faqThree">
-                  <span class="faq-question-icon">
-                    <i class="bi bi-heart-pulse"></i>
-                  </span>
-                  <span>Which services are available?</span>
-                </button>
-              </h2>
-
-              <div id="faqThree" class="accordion-collapse collapse" aria-labelledby="faqHeadingThree"
-                data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                  Consultation, teeth cleaning, root canal, dental crown, implant, braces, smile designing and emergency
-                  dental care are available.
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="faqHeadingFour">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#faqFour" aria-expanded="false" aria-controls="faqFour">
-                  <span class="faq-question-icon">
-                    <i class="bi bi-lightning-charge"></i>
-                  </span>
-                  <span>Can I visit for emergency dental pain?</span>
-                </button>
-              </h2>
-
-              <div id="faqFour" class="accordion-collapse collapse" aria-labelledby="faqHeadingFour"
-                data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                  Yes, you can call the clinic for urgent dental pain, swelling or emergency dental care support before
-                  visiting.
-                </div>
-              </div>
-            </div>
+            @endforelse
 
           </div>
         </div>

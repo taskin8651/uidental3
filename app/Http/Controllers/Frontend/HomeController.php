@@ -8,6 +8,7 @@ use App\Models\AboutPage;
 use App\Models\Service;
 use App\Models\Gallery;
 use App\Models\PatientReview;
+use App\Models\Faq;
 
 class HomeController extends Controller
 {
@@ -31,6 +32,11 @@ class HomeController extends Controller
             ->orderBy('id', 'desc')
             ->get();
 
-        return view('frontend.index', compact('aboutPage', 'homeServices', 'homeGalleries', 'patientReviews'));
+             $faqs = Faq::where('status', 1)
+            ->orderBy('sort_order', 'asc')
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('frontend.index', compact('aboutPage', 'homeServices', 'homeGalleries', 'patientReviews', 'faqs'));
     }
 }

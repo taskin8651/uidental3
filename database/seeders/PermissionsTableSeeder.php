@@ -138,6 +138,22 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => 112,
                 'title' => 'patient_review_access',
             ],
+            [
+                'id'    => 113,
+                'title' => 'faq_create',
+            ],
+            [
+                'id'    => 114,
+                'title' => 'faq_edit',
+            ],
+            [
+                'id'    => 115,
+                'title' => 'faq_delete',
+            ],
+            [
+                'id'    => 116,
+                'title' => 'faq_access',
+            ],
         ];
 
         Permission::insert($permissions);

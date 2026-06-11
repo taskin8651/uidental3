@@ -57,6 +57,10 @@ Route::resource('before-after-results', 'BeforeAfterResultsController');
 Route::delete('patient-reviews/destroy', 'PatientReviewsController@massDestroy')->name('patient-reviews.massDestroy');
 Route::resource('patient-reviews', 'PatientReviewsController', ['except' => ['show']]);
 
+// FAQs
+Route::delete('faqs/destroy', 'FaqsController@massDestroy')->name('faqs.massDestroy');
+Route::resource('faqs', 'FaqsController', ['except' => ['show']]);
+
 // Enquiries
 Route::delete('appointment-enquiries/destroy', 'AppointmentEnquiriesController@massDestroy')->name('appointment-enquiries.massDestroy');
 Route::resource('appointment-enquiries', 'AppointmentEnquiriesController', ['only' => ['index', 'show', 'destroy']]);
