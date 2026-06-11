@@ -567,7 +567,7 @@
           </div>
           <h4>Dental Consultation</h4>
           <p>Complete dental checkup and oral health guidance.</p>
-          <a href="service-details.html">
+          <a href="{{ route('services.index') }}">
             Read More
             <i class="bi bi-arrow-right"></i>
           </a>
@@ -580,7 +580,7 @@
           </div>
           <h4>Teeth Cleaning</h4>
           <p>Scaling and cleaning for fresh and healthy teeth.</p>
-          <a href="service-details.html">
+          <a href="{{ route('services.index') }}">
             Read More
             <i class="bi bi-arrow-right"></i>
           </a>
@@ -593,7 +593,7 @@
           </div>
           <h4>Root Canal</h4>
           <p>Comfort-focused root canal treatment for painful teeth.</p>
-          <a href="service-details.html">
+          <a href="{{ route('services.index') }}">
             Read More
             <i class="bi bi-arrow-right"></i>
           </a>
@@ -606,7 +606,7 @@
           </div>
           <h4>Crown & Bridge</h4>
           <p>Restore strength, shape and smile appearance.</p>
-          <a href="service-details.html">
+          <a href="{{ route('services.index') }}">
             Read More
             <i class="bi bi-arrow-right"></i>
           </a>
@@ -619,7 +619,7 @@
           </div>
           <h4>Dental Implant</h4>
           <p>Modern replacement solution for missing teeth.</p>
-          <a href="service-details.html">
+          <a href="{{ route('services.index') }}">
             Read More
             <i class="bi bi-arrow-right"></i>
           </a>
@@ -632,7 +632,7 @@
           </div>
           <h4>Braces</h4>
           <p>Orthodontic support for better teeth alignment.</p>
-          <a href="service-details.html">
+          <a href="{{ route('services.index') }}">
             Read More
             <i class="bi bi-arrow-right"></i>
           </a>
@@ -645,7 +645,7 @@
           </div>
           <h4>Smile Designing</h4>
           <p>Improve smile aesthetics with modern dental care.</p>
-          <a href="service-details.html">
+          <a href="{{ route('services.index') }}">
             Read More
             <i class="bi bi-arrow-right"></i>
           </a>
@@ -2199,6 +2199,6 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
   <!-- Custom JS -->
-  <script src="assets/js/main.js"></script>
+  <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
 </html>

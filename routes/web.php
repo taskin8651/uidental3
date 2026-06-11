@@ -35,6 +35,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
      // Facilities
     Route::delete('facilities/destroy', 'FacilitiesController@massDestroy')->name('facilities.massDestroy');
     Route::resource('facilities', 'FacilitiesController');
+
+    // Services
+Route::delete('services/destroy', 'ServicesController@massDestroy')->name('services.massDestroy');
+Route::resource('services', 'ServicesController');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password
@@ -48,3 +52,6 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
 
 
 Route::get('about', [App\Http\Controllers\Frontend\AboutController::class, 'index'])->name('about');
+
+Route::get('services', [App\Http\Controllers\Frontend\ServiceController::class, 'index'])->name('services.index');
+Route::get('services/{slug}', [App\Http\Controllers\Frontend\ServiceController::class, 'show'])->name('services.show');

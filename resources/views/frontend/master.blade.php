@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sinha Dental Clinic Patna | Dental Clinic in Kidwaipuri, Patna</title>
+  <title>@yield('title', 'Sinha Dental Clinic Patna | Dental Clinic in Kidwaipuri, Patna')</title>
   <meta name="description"
-    content="Sinha Dental Clinic in Patna offers professional dental consultation, teeth cleaning, root canal, crowns, implants, braces, smile designing and emergency dental care." />
+    content="@yield('meta_description', 'Sinha Dental Clinic in Patna offers professional dental consultation, teeth cleaning, root canal, crowns, implants, braces, smile designing and emergency dental care.')" />
   <meta name="keywords"
     content="Dental clinic in Patna, dentist in Patna, Sinha Dental Clinic, root canal Patna, teeth cleaning Patna, dental implant Patna, dentist Kidwaipuri Patna" />
   <!-- Google Fonts: Document Font Direction -->
@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="{{ asset('assets/css/about.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/contact.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/doctor.css') }}" />
-  <link rel="stylesheet" href="{{ asset('assets/css/gallary.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/gallery.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/book-appointment.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/services.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/service-details.css') }}" />
@@ -595,6 +595,6 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
   <!-- Custom JS -->
-  <script src="assets/js/main.js"></script>
+  <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
 </html>

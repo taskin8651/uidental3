@@ -108,10 +108,11 @@
             </div>
         @endcan
 
-        {{-- PAGE MANAGEMENT GROUP --}}
-@can('facility_access')
+        @can('service_access')
     @php
-        $pageActive = request()->is('admin/facilities*');
+        $pageActive = request()->is('admin/about-pages*')
+            || request()->is('admin/facilities*')
+            || request()->is('admin/services*');
     @endphp
 
     <div x-data="{ open: {{ $pageActive ? 'true' : 'false' }} }">
@@ -152,6 +153,14 @@
                    class="sub-link {{ request()->is('admin/facilities*') ? 'active' : '' }}">
                     <i class="fas fa-hospital"></i>
                     Facilities
+                </a>
+            @endcan
+
+            @can('service_access')
+                <a href="{{ route('admin.services.index') }}"
+                   class="sub-link {{ request()->is('admin/services*') ? 'active' : '' }}">
+                    <i class="fas fa-tooth"></i>
+                    Services
                 </a>
             @endcan
 
