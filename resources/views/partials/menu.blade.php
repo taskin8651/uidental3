@@ -112,7 +112,8 @@
     $pageActive = request()->is('admin/about-pages*')
         || request()->is('admin/facilities*')
         || request()->is('admin/services*')
-        || request()->is('admin/doctors*');
+        || request()->is('admin/doctors*')
+        || request()->is('admin/galleries*');
 @endphp
 
 <div x-data="{ open: {{ $pageActive ? 'true' : 'false' }} }">
@@ -171,6 +172,14 @@
         Doctors
     </a>
 @endcan
+@can('gallery_access')
+    <a href="{{ route('admin.galleries.index') }}"
+       class="sub-link {{ request()->is('admin/galleries*') ? 'active' : '' }}">
+        <i class="fas fa-images"></i>
+        Gallery
+    </a>
+@endcan
+
 
     </div>
 </div>

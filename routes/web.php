@@ -43,6 +43,9 @@ Route::resource('services', 'ServicesController');
  // Doctors
     Route::delete('doctors/destroy', 'DoctorsController@massDestroy')->name('doctors.massDestroy');
     Route::resource('doctors', 'DoctorsController');
+
+    Route::delete('galleries/destroy', 'GalleriesController@massDestroy')->name('galleries.massDestroy');
+Route::resource('galleries', 'GalleriesController');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password
@@ -61,3 +64,4 @@ Route::get('services', [App\Http\Controllers\Frontend\ServiceController::class, 
 Route::get('services/{slug}', [App\Http\Controllers\Frontend\ServiceController::class, 'show'])->name('services.show');
 
 Route::get('doctor-profile', [App\Http\Controllers\Frontend\DoctorController::class, 'index'])->name('doctor-profile');
+Route::get('gallery', [App\Http\Controllers\Frontend\GalleryController::class, 'index'])->name('gallery');
