@@ -28,7 +28,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Audit Logs
     Route::resource('audit-logs', 'AuditLogsController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
 
-    
+    // About Page
+    Route::get('about-pages', 'AboutPageController@index')->name('about-pages.index');
+    Route::post('about-pages/update', 'AboutPageController@update')->name('about-pages.update');
+
+     // Facilities
+    Route::delete('facilities/destroy', 'FacilitiesController@massDestroy')->name('facilities.massDestroy');
+    Route::resource('facilities', 'FacilitiesController');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password
@@ -40,3 +46,5 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
     }
 });
 
+
+Route::get('about', [App\Http\Controllers\Frontend\AboutController::class, 'index'])->name('about');
